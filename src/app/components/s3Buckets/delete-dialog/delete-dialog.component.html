@@ -1,0 +1,60 @@
+<div class="container dialog-container">
+  <button color="warn" class="close-btn" mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="row">
+    <div class="col-12 justify-content-center">
+      <h1 mat-dialog-title>Bucket detetion</h1>
+      <p class="mx-4">
+        The following bucket and all of its contents will be permanently deleted
+      </p>
+      <div mat-dialog-content>
+        <form class="example-form">
+          <mat-form-field appearance="fill">
+            <mat-label> Select Bucket </mat-label>
+            <mat-select [(value)]="selectedName" >
+              <mat-option value="null" >None</mat-option>
+              <mat-option value="{{ bucket }}" *ngFor="let bucket of buckets">{{
+                bucket
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;
+          <!-- <mat-form-field appearance="fill">
+            <mat-label>reagion</mat-label>
+            <mat-select >
+              <mat-option  value="null">None</mat-option>
+              <mat-option value="{{region}}" *ngFor="let region of regions" >{{region}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </form>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            (change)="conformDelete()"
+            id="defaultCheck1"
+          />
+          <label class="form-check-label" for="defaultCheck1">
+            I confirm permanent deletion of the bucket
+          </label>
+        </div>
+      </div>
+      <div mat-dialog-actions>
+        <button
+          type="button"
+          [disabled]="Confirm_deletion"
+          (click)="deleteBucket()"
+          class="btn m-1 btn-success"
+        >
+          <span><i class="bi bi-check-circle"></i></span>
+          Delete Bucket
+        </button>
+        <button type="button" class="btn btn-danger" mat-dialog-close>
+          <span><i class="bi bi-slash-circle"></i></span> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

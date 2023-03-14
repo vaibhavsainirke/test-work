@@ -1,0 +1,43 @@
+<div class="container dialog-container">
+  <button color="warn" class="close-btn" mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="row">
+    <div class="col-12 justify-content-center">
+      <h1 mat-dialog-title>Creat New Bucket</h1>
+      <form class="" [formGroup]="bucketForm"  >
+        <div mat-dialog-content>
+          <mat-form-field appearance="fill">
+            <mat-label>Bucket Name</mat-label>
+            <input type="text" matInput formControlName="bucket_name" [(ngModel)]="selectedBucket" placeholder="Ex.new-bucket" />
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field appearance="fill">
+            <mat-label>reagion</mat-label>
+            <mat-select [(value)]="selectedRegion" >
+              <mat-option value="null">None</mat-option>
+              <mat-option value="{{ region }}" *ngFor="let region of regions">{{
+                region
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p>
+            The rules apply for naming buckets in Amazon S3
+            <a
+              href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html"
+              >Name rules <span><i class="bi bi-box-arrow-up-right"></i></span>
+            </a>
+          </p>
+        </div>
+        <div mat-dialog-actions>
+          <button type="button" class="btn m-1 btn-success" (click)="creatBucket()" >
+            <span><i class="bi bi-check-circle"></i></span> Creat Bucket
+          </button>
+          <button type="button" class="btn btn-danger" mat-dialog-close>
+            <span><i class="bi bi-slash-circle"></i></span> Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container dialog-container">
+    <button color="warn" class="close-btn" mat-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="row">
+      <div class="col-12 justify-content-center">
+        <h1 mat-dialog-title>Creat New Folder</h1>
+        <form class=""  [formGroup]="folderForm" >
+          <div mat-dialog-content>
+            &nbsp;
+            <mat-form-field appearance="fill">
+                <mat-label>Folder Name</mat-label>
+                <input type="text" matInput formControlName="folder_name" [(ngModel)]="selectedFolder" placeholder="Ex.new-folder" />
+              </mat-form-field>
+          </div>
+          <div mat-dialog-actions>
+            <button type="button" class="btn m-1 btn-success" (click)="addFolder()" >
+              <span><i class="bi bi-check-circle"></i></span> Creat Bucket
+            </button>
+            <button type="button" class="btn btn-danger" mat-dialog-close>
+              <span><i class="bi bi-slash-circle"></i></span> Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

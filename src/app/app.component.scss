@@ -1,0 +1,95 @@
+// div{
+//     border: 1px solid black;
+// }
+.buckets {
+  height: 50vh;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgb(222, 219, 219);
+}
+
+.bucket-item {
+  border-bottom: 1px solid rgb(222, 219, 219);
+}
+
+.bucket-item:hover {
+  border-bottom: 4px solid rgb(82, 80, 80);
+  background-color: rgb(219, 191, 139);
+  cursor: pointer;
+}
+
+.bucket-item.selected {
+  border-bottom: 4px solid rgb(82, 80, 80);
+  background-color: rgb(234, 218, 186);
+}
+
+.bucket-scrolbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.bucket-scrolbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgb(142, 140, 140);
+}
+
+.file-folders {
+  height: 50vh;
+  border: 1px solid rgb(222, 219, 219);
+  min-width: 300px;
+  overflow-y: scroll;
+}
+
+.file-folders-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.file-folders-scrollbar::-webkit-scrollbar-thumb { 
+  border-radius: 10px;
+  background: red;
+}
+
+.folders-item {
+  border-bottom: 1px solid rgb(222, 219, 219);
+}
+
+.folders-item:hover {
+  border-bottom: 4px solid rgb(82, 80, 80);
+  cursor: pointer;
+}
+
+.btn-div-border {
+  border: 1px solid rgb(222, 219, 219);
+}
+
+.rectangle {
+  position: relative;
+  top: 0px;
+  border: 1px solid rgb(222, 219, 219);
+}
+
+mwlResizable {
+  box-sizing: border-box;
+}
+
+.resize-handle-right {
+  position: absolute;
+  height: 100%;
+  cursor: col-resize;
+  width: 5px;
+  background-color: rgb(191, 190, 190);
+}
+
+.resize-handle-right {
+  right: 0px;
+}
+
+
+.back_icon{
+  color: white;
+  background-color: rgb(62, 116, 184);
+  font-size: 20px;
+  margin: 1px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid rgb(183, 183, 219);
+  cursor: pointer;
+}
