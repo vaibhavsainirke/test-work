@@ -1,4 +1,5 @@
-<h1 style="background-color: rgb(219, 191, 139)">nav bar</h1>
+<router-outlet></router-outlet>
+<!-- <h1 style="background-color: rgb(219, 191, 139)">nav bar</h1>
 <div class="container-fluid">
   <div class="row">
     <div
@@ -50,7 +51,7 @@
           <span class="back_icon" ><i (click)="back()" class="bi bi-arrow-left-circle"></i></span>
         </div>
         <div class="col-12 file-folders folders-item-scrollbar">
-          <div style="position: relative;">
+          <div *ngIf="viewTable">
             <ag-grid-angular
               style="width: 100%; height: 50vh"
               class="ag-theme-alpine"
@@ -59,68 +60,22 @@
               [rowData]="rowData "
               [rowDragManaged]="true"
               [rowSelection]="'multiple'"
-              [animateRows]="true"
-              (cellClicked)="onCellClicked($event)"
               [allowContextMenuWithControlKey]="true"
               [getContextMenuItems]="getContextMenuItems"
-              
+              [animateRows]="true"
+              (cellClicked)="onCellClicked($event)"
             ></ag-grid-angular>
           </div>
-
-          <!-- <div class="p-1 folders-item">
-          
-            <div (click)="backFolder()">
-              <i
-                style="color: rgb(227, 223, 122)"
-                class="bi bi-folder-fill"
-              ></i>
-              &nbsp; ...
-            </div>
-          </div>
-          <div *ngIf="viewBucketObject">
-            <div
-              class="p-1 folders-item"
-              (click)="loadObjects(object.Name)"
-              *ngFor="let object of bucketObjects"
-            >
-              <i
-                *ngIf="object.Name.charAt(object.Name.length - 1) === '/'"
-                style="color: rgb(227, 223, 122)"
-                class="bi bi-folder-fill"
-              ></i>
-              <i
-                *ngIf="object.Name.charAt(object.Name.length - 1) !== '/'"
-                class="bi bi-file-earmark-text"
-              ></i>
-              &nbsp; {{ object.Name }}
-            </div>
-          </div>
-          <div *ngIf="viewSingleObject">
-            <div class="p-1 folders-item" *ngFor="let object of singelObject">
-              <div>
-                <i
-                  *ngIf="object.Name.charAt(object.Name.length - 1) === '/'"
-                  style="color: rgb(227, 223, 122)"
-                  class="bi bi-folder-fill"
-                ></i>
-                <i
-                  *ngIf="object.Name.charAt(object.Name.length - 1) !== '/'"
-                  class="bi bi-file-earmark-text"
-                ></i>
-                &nbsp; {{ object.Name }}
-              </div>
-            </div>
-          </div> -->
+          <div *ngIf="viewNewScreen" style="width: 100%; height: 50vh;border: 2px solid black;">2</div>
         </div>
-        <div class="col-12 p-2 btn-div-border">
-         
-          
+        
+        <div class="col-12 p-2 btn-div-border"> 
           <div class="btn-group dropup">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
-              <span><i class="bi bi-file-arrow-up"></i> </span> Uplode
+              <span><i class="bi bi-file-arrow-up"></i> </span> Upload
             </button>
             <ul class="dropdown-menu">
-              <a class="dropdown-item" href="#"><input (change)="onFileSelected($event)" type="file" ></a>
+              <a class="dropdown-item" href="#"><input multiple (change)="onFileSelected($event)" type="file" ></a>
             </ul>
           </div>
           <button type="button" class="btn btn-primary mx-1">
@@ -139,4 +94,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<!-- <mat-tab-group>
+  <mat-tab label="Headers"> Content 1 </mat-tab>
+  <mat-tab label="Tags"> Content 2 </mat-tab>
+  <mat-tab label="Properties"> Content 3 </mat-tab>
+</mat-tab-group> -->

@@ -34,7 +34,7 @@ export class CreatFolderComponent implements OnInit {
     this.lodeBuckets();
     if (this.addFolderData.folderPath != null) {
       this.path = this.addFolderData.folderPath;
-    }
+    }else{this.path='';}
     let passData = {
       BucketName: this.addFolderData.bucketName,
       FolderName: this.path + this.selectedFolder,

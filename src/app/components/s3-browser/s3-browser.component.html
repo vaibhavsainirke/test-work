@@ -1,0 +1,227 @@
+<h1 class="px-4" style="background-color: rgb(219, 191, 139)">nav bar</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-4 rectangle"
+      mwlResizable
+      [enableGhostResize]="true"
+      [ngStyle]="resizeStyle"
+      (resizeEnd)="onResizeEnd($event)"
+    >
+      <div
+        class="resize-handle-right"
+        mwlResizeHandle
+        [resizeEdges]="{ right: true }"
+      ></div>
+      <div class="bucket-scrolbar buckets">
+        <div
+          class="p-1 bucket-item"
+          *ngFor="let bucket of buckets"
+          [class.selected]="bucket === selectedBucket"
+          (click)="onBucketClick(bucket)"
+        >
+          <div class="bucket-svg">
+            <mat-icon svgIcon="bucket-icon" class="svg-home"></mat-icon>
+          </div>
+          <div class="bucket-name">
+            {{ bucket }}
+          </div>
+        </div>
+      </div>
+      <div class="p-2 btn-div-border">
+        <button
+          type="button"
+          (click)="addBuckets()"
+          class="btn btn-primary mx-1"
+        >
+          <span><i class="bi bi-plus-circle"></i></span> Add Bucket
+        </button>
+        <button
+          type="button"
+          (click)="deleteBucket()"
+          class="btn btn-danger mx-1"
+        >
+          <span><i class="bi bi-x-circle"></i></span> Delete
+        </button>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div
+          class="col-12 btn-div-border d-flex justify-content-between align-middle"
+        >
+          <div><strong>Path:</strong> &nbsp; {{ lastPath }}</div>
+          <div>
+            <span *ngIf="viewTable" class="back_icon"
+              ><i (click)="back()" class="bi bi-arrow-left-circle"></i
+            ></span>
+            <span *ngIf="viewNewScreen" class="close_icon"
+              ><i (click)="closeNewScreen()" class="bi bi-x-circle"></i
+            ></span>
+          </div>
+        </div>
+        <div class="col-12 file-folders folders-item-scrollbar">
+          <div *ngIf="viewTable">
+            <ag-grid-angular
+              style="width: 100%; height: 50vh"
+              class="ag-theme-alpine"
+              [columnDefs]="columnDefs"
+              [defaultColDef]="defaultColDef"
+              [rowData]="rowData"
+              [rowDragManaged]="true"
+              [rowSelection]="'multiple'"
+              [allowContextMenuWithControlKey]="true"
+              [getContextMenuItems]="getContextMenuItems"
+              [animateRows]="true"
+              (cellClicked)="onCellClicked($event)"
+            ></ag-grid-angular>
+          </div>
+          <!-- new screen start -->
+          <div
+            *ngIf="viewNewScreen"
+            style="
+              width: 100%;
+              height: 50vh;
+              border: 1px solid rgb(222, 219, 219);
+              overflow-y: scroll;
+            "
+          >
+            <div *ngFor="let object of newScreenObject">
+              <!-- header -->
+              <div *ngIf="header">
+                <div class="text-center m-3 new-screen-title">
+                  {{ newScreenTitle }}
+                </div>
+                <div class="new-screen-object">
+                  <strong>Name:</strong> &nbsp; {{ object.Name }} <br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Accept Ranges:</strong> &nbsp; {{ object.AcceptRanges
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Content Length:</strong>
+                  &nbsp; {{ object.ContentLength }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Content Type:</strong> &nbsp; {{ object.ContentType
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>ETag:</strong> &nbsp; {{ object.ETag }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Last Modified:</strong> &nbsp; {{ object.LastModified
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Server:</strong> &nbsp; {{ object.Server }}<br />
+                </div>
+              </div>
+              <!-- header -->
+              <!-- Property -->
+              <div *ngIf="property">
+                <div class="text-center m-3 new-screen-title">
+                  {{ newScreenTitle }}
+                </div>
+                <div class="new-screen-object">
+                  <strong>Name:</strong> &nbsp; {{ object.Name }} <br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>ETag:</strong> &nbsp; {{ object.ETag }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Last Modified:</strong> &nbsp; {{ object.LastModified
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Size:</strong> &nbsp; {{ object.Size }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Storage Class:</strong>
+                  &nbsp; {{ object.StorageClass }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Version ID:</strong> &nbsp; {{ object.VersionID
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Server Side Encrypted:</strong>
+                  &nbsp; {{ object.Server_Side_Encrypted }}<br />
+                </div>
+              </div>
+              <!-- Property -->
+              <!-- Version -->
+              <div *ngIf="version">
+                <div class="text-center m-3 new-screen-title">
+                  {{ newScreenTitle }}
+                </div>
+                <div class="new-screen-object">
+                  <strong>Key:</strong> &nbsp; {{ object.Key }} <br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>ETag:</strong> &nbsp; {{ object.ETag }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Last Modified:</strong> &nbsp; {{ object.LastModified
+                  }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Size:</strong> &nbsp; {{ object.Size }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Storage Class:</strong> &nbsp;
+                  {{ object.StorageClass }}<br />
+                </div>
+                <div class="new-screen-object">
+                  <strong>Version ID:</strong> &nbsp; {{ object.VersionID }}<br />
+                </div>
+              </div>
+              <!-- Version -->
+            </div>
+          </div>
+          <!-- new screen end -->
+        </div>
+        <div class="col-12 p-2 btn-div-border">
+          <div class="btn-group dropup">
+            <button
+              type="button"
+              class="btn btn-secondary dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <span><i class="bi bi-file-arrow-up"></i> </span> UploadFile
+            </button>
+            <ul class="dropdown-menu">
+              <a 
+                ><input (change)="onFileSelected($event)" multiple type="file"
+              /></a>
+              <a ><button (click)="upload()" class="btn btn-light">Upload</button></a>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary mx-1">
+            <span><i class="bi bi-download"></i></span> Download
+          </button>
+          <button type="button" (click)="empty()" class="btn btn-danger mx-1">
+            <span><i class="bi bi-trash3"></i></span> Empty
+          </button>
+          <button type="button" class="btn btn-primary mx-1">
+            <span><i class="bi bi-arrow-clockwise"></i></span> Refresh
+          </button>
+          <button
+            type="button"
+            (click)="creatFolder()"
+            class="btn btn-primary mx-1"
+          >
+            <span><i class="bi bi-folder-plus"></i></span> New Folder
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <mat-tab-group>
+  <mat-tab label="Headers"> Content 1 </mat-tab>
+  <mat-tab label="Tags"> Content 2 </mat-tab>
+  <mat-tab label="Properties"> Content 3 </mat-tab>
+</mat-tab-group> -->

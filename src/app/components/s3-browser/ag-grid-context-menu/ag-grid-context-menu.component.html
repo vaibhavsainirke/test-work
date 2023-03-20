@@ -1,0 +1,5 @@
+<span>
+  <span *ngIf="cellValue.charAt(cellValue.length - 1) == '/'" ><i style="color: rgb(221, 210, 89);" class="bi bi-folder-fill"></i></span>
+  <span *ngIf="cellValue.charAt(cellValue.length - 1) != '/'" ><i style="color: rgb(188, 183, 183);" class="bi bi-file-earmark-text-fill"></i></span>
+  {{ cellValue }}
+</span>
